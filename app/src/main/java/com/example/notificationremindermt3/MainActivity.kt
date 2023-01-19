@@ -16,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.notificationremindermt3.core.appbar.MainAppBar
+import com.example.notificationremindermt3.features.dashboard.DashboardScreen
 import com.example.notificationremindermt3.ui.theme.NotificationReminderTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,29 +39,14 @@ fun NotificationReminderApp() {
             color = MaterialTheme.colorScheme.background
         ) {
             Scaffold(
-                topBar = {
-                    TopAppBar(
-                        navigationIcon = {
-                            IconButton(onClick = {}) {
-                                Icon(
-                                    imageVector = Icons.Default.Menu,
-                                    contentDescription = "Menu Icon"
-                                )
-                            }
-                        },
-                        title = { Text(text = "Hello") },
-                        colors = TopAppBarDefaults.topAppBarColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
-                                3.dp
-                            )
-                        )
-                    )
+                topBar = { MainAppBar(
+                    text = "Hello Adam",
+                    navigationIcon = Icons.Default.Menu,
+                    onNavigationButtonClick = {},
+                )
                 },
-
                 content = {
-                    Box(modifier = Modifier.padding(it)) {
-                        Text(text = "Hellp")
-                    }
+                    DashboardScreen(contentPadding = it)
                 }
             )
         }

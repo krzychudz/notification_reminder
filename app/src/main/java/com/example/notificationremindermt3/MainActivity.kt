@@ -38,17 +38,7 @@ fun NotificationReminderApp() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            Scaffold(
-                topBar = { MainAppBar(
-                    text = "Hello Adam",
-                    navigationIcon = Icons.Default.Menu,
-                    onNavigationButtonClick = {},
-                )
-                },
-                content = {
-                    DashboardScreen(contentPadding = it)
-                }
-            )
+            DashboardScreen()
         }
     }
 }

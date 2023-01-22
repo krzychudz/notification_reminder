@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.example.notificationremindermt3.core.appbar.composables.BottomSheetGrappler
+import com.example.notificationremindermt3.core.appbar.composables.SpacerContainer
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -25,7 +26,7 @@ fun AddNotificationBottomSheetBody() {
             .padding(32.dp)
     ) {
         BottomSheetGrappler(modifier = Modifier.align(Alignment.CenterHorizontally))
-        Spacer(modifier = Modifier.height(20.dp))
+        SpacerContainer(20.0)
         TextField(
             modifier = Modifier.fillMaxWidth(),
             value = notificationName,
@@ -34,12 +35,14 @@ fun AddNotificationBottomSheetBody() {
             label = { Text(text = "Notification Name") },
             colors = TextFieldDefaults.textFieldColors(containerColor = Color.Transparent)
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        SpacerContainer(16.0)
         Text(text = "Notification dates")
-        Spacer(modifier = Modifier.height(8.dp))
+        SpacerContainer(8.0)
+        Divider()
+        SpacerContainer(8.0)
         CircularIconButton(image = Icons.Rounded.Add, contentDescription = "Add notification date", onClick = {})
         SubmitButton(modifier = Modifier.align(Alignment.CenterHorizontally))
-        Spacer(modifier = Modifier.height(8.dp))
+        SpacerContainer(8.0)
     }
 }
 

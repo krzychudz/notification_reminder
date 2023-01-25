@@ -1,5 +1,6 @@
 package com.example.notificationremindermt3.features.new_notification
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -14,11 +15,28 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.example.notificationremindermt3.core.appbar.composables.BottomSheetGrappler
 import com.example.notificationremindermt3.core.appbar.composables.SpacerContainer
+import com.example.notificationremindermt3.features.new_notification.choose_days_dialog.ChooseDaysDialog
+import com.maxkeppeker.sheets.core.models.base.rememberSheetState
+import com.maxkeppeler.sheets.clock.ClockDialog
+import com.maxkeppeler.sheets.clock.models.ClockConfig
+import com.maxkeppeler.sheets.clock.models.ClockSelection
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddNotificationBottomSheetBody() {
     var notificationName by remember { mutableStateOf("") }
+    val openDialog = remember { mutableStateOf(false) }
+    val calendarState = rememberSheetState()
+
+    ClockDialog(
+        state = calendarState,
+        config = ClockConfig(),
+        selection = ClockSelection.HoursMinutes { hours, minutes ->
+
+        })
+
+    if (openDialog.value)
+        ChooseDaysDialog(onDismissRequest = {openDialog.value = false})
 
     Column(
         modifier = Modifier
@@ -37,12 +55,32 @@ fun AddNotificationBottomSheetBody() {
         )
         SpacerContainer(16.0)
         Text(text = "Notification dates")
-        SpacerContainer(8.0)
+        SpacerContainer(12.0)
         Divider()
-        SpacerContainer(8.0)
-        CircularIconButton(image = Icons.Rounded.Add, contentDescription = "Add notification date", onClick = {})
+        SpacerContainer(12.0)
+        AddPropertyButton(label = "Time:", buttonContentDescription = "Add notification date") {
+            calendarState.show()
+        }
+        SpacerContainer(12.0)
+        AddPropertyButton(label = "Repeat:", buttonContentDescription = "Add notification date") {
+            openDialog.value = true
+        }
+        SpacerContainer(16.0)
         SubmitButton(modifier = Modifier.align(Alignment.CenterHorizontally))
-        SpacerContainer(8.0)
+        SpacerContainer(4.0)
+    }
+}
+
+@Composable
+fun AddPropertyButton(label: String, buttonContentDescription: String, onClick: () -> Unit) {
+    Row() {
+        Text(text = label)
+        SpacerContainer(width = 12.0)
+        CircularIconButton(
+            image = Icons.Rounded.Add,
+            contentDescription = buttonContentDescription,
+            onClick = onClick,
+        )
     }
 }
 
@@ -50,10 +88,13 @@ fun AddNotificationBottomSheetBody() {
 fun CircularIconButton(onClick: () -> Unit, image: ImageVector, contentDescription: String) {
     IconButton(
         onClick = onClick,
-        modifier = Modifier.background(
-            color = MaterialTheme.colorScheme.surface,
-            shape = CircleShape
-        )
+        modifier = Modifier
+            .background(
+                color = MaterialTheme.colorScheme.surface,
+                shape = CircleShape
+            )
+            .height(24.dp)
+            .width(24.dp)
     ) {
         Icon(image, contentDescription)
     }

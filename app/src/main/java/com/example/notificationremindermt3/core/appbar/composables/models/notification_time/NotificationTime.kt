@@ -1,0 +1,6 @@
+package com.example.notificationremindermt3.core.appbar.composables.models.notification_time
+
+data class NotificationTime(
+    val hours: Int = 12,
+    val minutes: Int = 12,
+)

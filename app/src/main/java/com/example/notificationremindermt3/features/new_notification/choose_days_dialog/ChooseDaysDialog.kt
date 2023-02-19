@@ -34,13 +34,14 @@ fun ChooseDaysDialog(onDismissRequest: () -> Unit) {
                     modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
                 )
                 SpacerContainer(16.0)
-                DaySelector("Monday") {}
-                DaySelector("Tuesday") {}
-                DaySelector("Wednesday") {}
-                DaySelector("Thursday") {}
-                DaySelector("Friday") {}
-                DaySelector("Saturday") {}
-                DaySelector("Sunday") {}
+                DaySelector("Monday", isChecked = true) {}
+                DaySelector("Tuesday", isChecked = true) {}
+                DaySelector("Wednesday", isChecked = true) {}
+                DaySelector("Thursday", isChecked = true) {}
+                DaySelector("Friday", isChecked = true) {}
+                DaySelector("Saturday", isChecked = true) {}
+                DaySelector("Sunday", isChecked = true) {}
+                SpacerContainer(16.0)
                 SubmitButton(modifier = Modifier.align(alignment = Alignment.CenterHorizontally))
             }
         }
@@ -48,9 +49,9 @@ fun ChooseDaysDialog(onDismissRequest: () -> Unit) {
 }
 
 @Composable
-fun DaySelector(label: String, onSelect: () -> Unit) {
+fun DaySelector(label: String, isChecked: Boolean, onSelected: (isSelected: Boolean) -> Unit) {
     Row() {
-        Checkbox(checked = true, onCheckedChange = {})
+        Checkbox(checked = isChecked, onCheckedChange = onSelected)
         Text(text = label, modifier = Modifier.align(Alignment.CenterVertically))
     }
 }

@@ -3,6 +3,7 @@ package com.example.notificationremindermt3.features.new_notification
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.*
@@ -29,7 +30,7 @@ fun AddNotificationBottomSheetBody(
 ) {
     val openDialog = remember { mutableStateOf(false) }
     val calendarState = rememberSheetState()
-    val addNotificationState by addNotificationBottomSheetViewModel.state.collectAsState()
+    val addNotificationState by addNotificationBottomSheetViewModel.state
 
     ClockDialog(
         state = calendarState,
@@ -39,7 +40,10 @@ fun AddNotificationBottomSheetBody(
         })
 
     if (openDialog.value)
-        ChooseDaysDialog { openDialog.value = false }
+        ChooseDaysDialog { resultData ->
+            openDialog.value = false
+            addNotificationBottomSheetViewModel.onRepeatDateChanged(resultData)
+        }
 
     Column(
         modifier = Modifier
@@ -64,27 +68,41 @@ fun AddNotificationBottomSheetBody(
         AddPropertySection(
             label = "Time:",
             buttonContentDescription = "Add notification date",
-            selectedComposable = {},
-        ) {
-            calendarState.show()
-        }
+            selectedComposable = addNotificationState.notificationTime?.let {
+                { RoundedLabel(it.formattedTime()) }
+            },
+        ) { calendarState.show() }
         SpacerContainer(12.0)
         AddPropertySection(
             label = "Repeat:",
             buttonContentDescription = "Add notification date",
-            selectedComposable = null
-        ) {
-            openDialog.value = true
-        }
+            selectedComposable = addNotificationState.notificationRepeatDays?.let {
+                { RoundedLabel(it.formattedDays()) }
+            },
+        ) { openDialog.value = true }
         SpacerContainer(16.0)
-        SubmitButton(modifier = Modifier.align(Alignment.CenterHorizontally))
+        SubmitButton(
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            label = "Add Notification"
+        ) {
+
+        }
         SpacerContainer(4.0)
     }
 }
 
 @Composable
-fun RoundedLabel() {
-    Text(text = "Time")
+fun RoundedLabel(text: String) {
+    Box(
+        modifier = Modifier
+            .background(
+                color = MaterialTheme.colorScheme.surface,
+                shape = RoundedCornerShape(12.dp),
+            )
+            .padding(horizontal = 12.dp, vertical = 4.dp)
+    ) {
+        Text(text = text)
+    }
 }
 
 @Composable
@@ -94,25 +112,36 @@ fun AddPropertySection(
     selectedComposable: (@Composable () -> Unit)?,
     onClick: () -> Unit,
 ) {
-    Row() {
-        Text(text = label)
+    Row(modifier = Modifier.fillMaxWidth()) {
+        Text(modifier = Modifier.align(Alignment.CenterVertically), text = label)
         SpacerContainer(width = 12.0)
-        if (selectedComposable != null)
-            selectedComposable()
-        else
-            CircularIconButton(
-                image = Icons.Rounded.Add,
-                contentDescription = buttonContentDescription,
-                onClick = onClick,
-            )
+        if (selectedComposable != null) {
+            Row(modifier = Modifier.weight(1F, fill = false)) {
+                selectedComposable()
+                SpacerContainer(width = 12.0)
+            }
+        }
+        CircularIconButton(
+            modifier = Modifier
+                .align(Alignment.CenterVertically),
+            image = Icons.Rounded.Add,
+            contentDescription = buttonContentDescription,
+            onClick = onClick,
+        )
+
     }
 }
 
 @Composable
-fun CircularIconButton(onClick: () -> Unit, image: ImageVector, contentDescription: String) {
+fun CircularIconButton(
+    modifier: Modifier,
+    onClick: () -> Unit,
+    image: ImageVector,
+    contentDescription: String
+) {
     IconButton(
         onClick = onClick,
-        modifier = Modifier
+        modifier = modifier
             .background(
                 color = MaterialTheme.colorScheme.surface,
                 shape = CircleShape
@@ -125,11 +154,11 @@ fun CircularIconButton(onClick: () -> Unit, image: ImageVector, contentDescripti
 }
 
 @Composable
-fun SubmitButton(modifier: Modifier = Modifier) {
+fun SubmitButton(modifier: Modifier = Modifier, label: String, onClick: () -> Unit) {
     ElevatedButton(
-        onClick = {},
+        onClick = onClick,
         modifier = modifier
     ) {
-        Text(text = "Add Notification")
+        Text(text = label)
     }
 }

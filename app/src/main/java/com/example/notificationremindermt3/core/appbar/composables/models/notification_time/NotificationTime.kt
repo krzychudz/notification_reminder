@@ -3,4 +3,8 @@ package com.example.notificationremindermt3.core.appbar.composables.models.notif
 data class NotificationTime(
     val hours: Int = 12,
     val minutes: Int = 12,
-)
+) {
+    fun formattedTime() : String {
+        return "$hours:$minutes"
+    }
+}

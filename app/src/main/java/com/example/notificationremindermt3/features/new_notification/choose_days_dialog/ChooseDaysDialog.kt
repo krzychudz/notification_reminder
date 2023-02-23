@@ -14,13 +14,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.notificationremindermt3.core.appbar.composables.SpacerContainer
-import com.example.notificationremindermt3.features.new_notification.SubmitButton
+import com.example.notificationremindermt3.core.composables.SpacerContainer
+import com.example.notificationremindermt3.core.composables.submit_button.SubmitButton
 import com.example.notificationremindermt3.features.new_notification.models.notification_days_state.NotificationDaysState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChooseDaysDialog(
+    initialDaysState: NotificationDaysState = NotificationDaysState(),
     onDismissRequest: () -> Unit = {},
     onConfirmationButtonClicked: (result: NotificationDaysState) -> Unit
 ) {
@@ -28,7 +29,7 @@ fun ChooseDaysDialog(
     val daysCheckState =
         remember {
             mutableStateOf(
-                NotificationDaysState()
+                initialDaysState
             )
         }
 

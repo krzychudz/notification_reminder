@@ -12,11 +12,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.unit.dp
 import com.example.notificationremindermt3.core.appbar.MainAppBar
-import com.example.notificationremindermt3.core.appbar.composables.fab.BottomSheetScaffoldFabPositionContainer
+import com.example.notificationremindermt3.core.composables.fab.BottomSheetScaffoldFabPositionContainer
 import com.example.notificationremindermt3.features.dashboard.composable.NotificationItem
 import com.example.notificationremindermt3.features.new_notification.AddNotificationBottomSheetBody
 import fr.swarmlab.beta.ui.screens.components.material3.*

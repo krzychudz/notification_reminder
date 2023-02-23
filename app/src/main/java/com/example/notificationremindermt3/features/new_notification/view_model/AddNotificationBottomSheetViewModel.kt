@@ -3,7 +3,7 @@ package com.example.notificationremindermt3.features.new_notification.view_model
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.notificationremindermt3.core.appbar.composables.models.notification_time.NotificationTime
+import com.example.notificationremindermt3.core.composables.models.notification_time.NotificationTime
 import com.example.notificationremindermt3.features.new_notification.models.notification_days_state.NotificationDaysState
 import com.example.notificationremindermt3.features.new_notification.view_model.state.AddNotificationState
 
@@ -24,6 +24,7 @@ class AddNotificationBottomSheetViewModel : ViewModel() {
     }
 
     fun onRepeatDateChanged(notificationDaysData: NotificationDaysState) {
+        if (notificationDaysData.isEmpty()) return
         val newState = _state.value.copy(notificationRepeatDays = notificationDaysData)
         _state.value = newState
     }

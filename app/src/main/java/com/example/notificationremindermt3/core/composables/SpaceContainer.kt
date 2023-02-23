@@ -1,4 +1,4 @@
-package com.example.notificationremindermt3.core.appbar.composables
+package com.example.notificationremindermt3.core.composables
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height

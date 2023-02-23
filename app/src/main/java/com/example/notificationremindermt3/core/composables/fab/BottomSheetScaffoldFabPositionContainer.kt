@@ -1,4 +1,4 @@
-package com.example.notificationremindermt3.core.appbar.composables.fab
+package com.example.notificationremindermt3.core.composables.fab
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.layout.Layout

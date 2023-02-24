@@ -7,7 +7,7 @@ import com.example.notificationremindermt3.core.models.notification_time.Notific
 import com.example.notificationremindermt3.features.new_notification.models.notification_days_state.NotificationDaysState
 import com.example.notificationremindermt3.features.new_notification.view_model.state.AddNotificationState
 
-class AddNotificationBottomSheetViewModel : ViewModel() {
+class AddNotificationBottomSheetViewModel() : ViewModel() {
 
     private val _state = mutableStateOf(AddNotificationState())
     val state: State<AddNotificationState> = _state

@@ -2,6 +2,7 @@ package com.example.notificationremindermt3.core.database.dao
 
 import androidx.room.*
 import com.example.notificationremindermt3.core.database.table.Notification
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NotificationDao {
@@ -9,7 +10,7 @@ interface NotificationDao {
     suspend fun insertSingle(notification: Notification)
 
     @Query("SELECT * FROM Notifications")
-    suspend fun getAll(): List<Notification>
+    suspend fun getAll(): Flow<List<Notification>>
 
     @Query("SELECT * FROM Notifications WHERE id = :notificationId")
     suspend fun getById(notificationId: String) : Notification

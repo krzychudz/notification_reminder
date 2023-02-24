@@ -1,4 +1,4 @@
-package com.example.notificationremindermt3.core.composables.models.notification_time
+package com.example.notificationremindermt3.core.models.notification_time
 
 data class NotificationTime(
     val hours: Int = 12,

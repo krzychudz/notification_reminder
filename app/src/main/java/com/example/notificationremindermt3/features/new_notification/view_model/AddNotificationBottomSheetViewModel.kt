@@ -52,6 +52,7 @@ class AddNotificationBottomSheetViewModel @Inject constructor(
         )
         viewModelScope.launch {
             notificationRepository.addNotification(notificationData)
+            _state.value = notificationState.copy(isNotificationAdded = true)
         }
     }
 }

@@ -7,4 +7,5 @@ data class AddNotificationState(
     val notificationName: String = "",
     val notificationTime: NotificationTime? = null,
     val notificationRepeatDays: NotificationDaysState? = null,
+    val isNotificationAdded: Boolean = false,
 )

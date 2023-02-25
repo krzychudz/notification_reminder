@@ -15,10 +15,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.notificationremindermt3.features.dashboard.NotificationData
+import com.example.notificationremindermt3.core.database.table.Notification
 
 @Composable
-fun NotificationItem(notificationData: NotificationData) {
+fun NotificationItem(notificationData: Notification) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -30,8 +30,8 @@ fun NotificationItem(notificationData: NotificationData) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(Modifier.weight(1F)) {
-            Text(text = notificationData.title)
-            Text(text = notificationData.dates)
+            Text(text = notificationData.name)
+            Text(text = notificationData.notificationDays.formattedDays())
         }
         Icon(Icons.Filled.KeyboardArrowRight, contentDescription = "Arrow Forward")
     }

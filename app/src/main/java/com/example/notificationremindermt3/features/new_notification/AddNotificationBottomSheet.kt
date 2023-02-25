@@ -15,7 +15,6 @@ import com.example.notificationremindermt3.core.composables.BottomSheetGrappler
 import com.example.notificationremindermt3.core.composables.SpacerContainer
 import com.example.notificationremindermt3.features.new_notification.choose_days_dialog.ChooseDaysDialog
 import com.example.notificationremindermt3.features.new_notification.view_model.AddNotificationBottomSheetViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.notificationremindermt3.core.composables.circular_icon_button.CircularIconButton
 import com.example.notificationremindermt3.core.composables.rounded_label.RoundedLabel
 import com.example.notificationremindermt3.core.composables.submit_button.SubmitButton
@@ -25,7 +24,8 @@ import com.example.notificationremindermt3.features.new_notification.models.noti
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddNotificationBottomSheetBody(
-    addNotificationBottomSheetViewModel: AddNotificationBottomSheetViewModel = hiltViewModel()
+    addNotificationBottomSheetViewModel: AddNotificationBottomSheetViewModel = hiltViewModel(),
+    onNotificationCreated: () -> Unit,
 ) {
     val openDialog = remember { mutableStateOf(false) }
     val addNotificationState by addNotificationBottomSheetViewModel.state
@@ -40,6 +40,13 @@ fun AddNotificationBottomSheetBody(
         },
         initHours = addNotificationState.notificationTime?.hours ?: 12,
         initMinutes = addNotificationState.notificationTime?.minutes ?: 12
+    )
+
+    LaunchedEffect(
+        key1 = addNotificationState.isNotificationAdded,
+        block = {
+            onNotificationCreated()
+        },
     )
 
     if (openDialog.value)

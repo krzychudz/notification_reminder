@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface NotificationRepositoryInterface {
     suspend fun allNotifications() : Flow<List<Notification>>
-    fun addNotification(notification: Notification)
+    suspend fun addNotification(notification: Notification)
 }

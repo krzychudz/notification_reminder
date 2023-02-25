@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.notificationremindermt3.core.database.dao.NotificationDao
 import com.example.notificationremindermt3.core.database.table.Notification
+import javax.inject.Inject
 
 @Database(entities = [(Notification::class)], version = 1, exportSchema = false)
 abstract class NotificationAppDatabase : RoomDatabase() {

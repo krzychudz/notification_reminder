@@ -1,5 +1,9 @@
 package com.example.notificationremindermt3.features.new_notification.models.notification_days_state
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class NotificationDaysState(
     val monday: Boolean = false,
     val tuesday: Boolean = false,
@@ -8,7 +12,7 @@ data class NotificationDaysState(
     val friday: Boolean = false,
     val saturday: Boolean = false,
     val sunday: Boolean = false,
-) {
+) : Parcelable {
     fun isEmpty(): Boolean {
         return !monday && !tuesday && !wednesdays && !thursday && !friday && !saturday && !sunday
     }

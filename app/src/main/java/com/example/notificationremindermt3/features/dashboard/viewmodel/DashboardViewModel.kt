@@ -8,7 +8,7 @@ import com.example.notificationremindermt3.core.database.table.Notification
 import com.example.notificationremindermt3.core.repository.notification.NotificationRepositoryInterface
 import kotlinx.coroutines.launch
 
-class DashboardViewModel(private val notificationRepository: NotificationRepositoryInterface) :
+class DashboardViewModel() :
     ViewModel() {
 
     private val _state = mutableStateOf(emptyList<Notification>())
@@ -20,9 +20,9 @@ class DashboardViewModel(private val notificationRepository: NotificationReposit
 
     private fun initDatabaseObserver() {
         viewModelScope.launch {
-            notificationRepository.allNotifications().collect { notifications ->
-                _state.value = notifications
-            }
+//            notificationRepository.allNotifications().collect { notifications ->
+//                _state.value = notifications
+  //          }
         }
     }
 }

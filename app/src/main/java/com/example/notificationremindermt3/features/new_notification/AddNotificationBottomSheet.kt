@@ -1,6 +1,5 @@
 package com.example.notificationremindermt3.features.new_notification
 
-import android.app.TimePickerDialog
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -11,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.notificationremindermt3.core.composables.BottomSheetGrappler
 import com.example.notificationremindermt3.core.composables.SpacerContainer
 import com.example.notificationremindermt3.features.new_notification.choose_days_dialog.ChooseDaysDialog
@@ -25,7 +25,7 @@ import com.example.notificationremindermt3.features.new_notification.models.noti
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddNotificationBottomSheetBody(
-    addNotificationBottomSheetViewModel: AddNotificationBottomSheetViewModel = viewModel()
+    addNotificationBottomSheetViewModel: AddNotificationBottomSheetViewModel = hiltViewModel()
 ) {
     val openDialog = remember { mutableStateOf(false) }
     val addNotificationState by addNotificationBottomSheetViewModel.state
@@ -91,7 +91,7 @@ fun AddNotificationBottomSheetBody(
             modifier = Modifier.align(Alignment.CenterHorizontally),
             label = "Add Notification"
         ) {
-
+            addNotificationBottomSheetViewModel.onSubmitButtonPressed()
         }
         SpacerContainer(4.0)
     }

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Notification Reminder Mt3</string>
+    <string name = "notification_name_label">Notification Name</string>
+    <string name = "notification_dates_label">Notification Dates</string>
+    <string name = "notification_time_label">Time:</string>
+    <string name = "notification_add_date_label">Add notification date</string>
+    <string name = "notification_repeat_label">Repeat:</string>
+    <string name = "notification_add_label">Add Notification</string>
+    <string name = "notification_notification_dashboard">Notification Dashboard</string>
+    <string name = "notification_empty_list_placeholder">You have not scheduled any notifications yet.\nTap + to add one.</string>
+
 </resources>

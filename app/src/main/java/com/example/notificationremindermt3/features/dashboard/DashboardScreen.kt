@@ -12,8 +12,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.notificationremindermt3.R
 import com.example.notificationremindermt3.core.appbar.MainAppBar
 import com.example.notificationremindermt3.core.composables.fab.BottomSheetScaffoldFabPositionContainer
 import com.example.notificationremindermt3.core.database.table.Notification
@@ -41,7 +43,7 @@ fun DashboardScreen(
         scaffoldState = bottomSheetScaffoldState,
         topBar = {
             MainAppBar(
-                text = "Hello Adam",
+                text = stringResource(id = R.string.notification_notification_dashboard),
                 navigationIcon = Icons.Default.Menu,
                 onNavigationButtonClick = {},
             )

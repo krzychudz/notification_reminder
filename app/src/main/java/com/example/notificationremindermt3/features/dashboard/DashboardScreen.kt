@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -41,6 +42,7 @@ fun DashboardScreen(
 
     BottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
+        sheetBackgroundColor = MaterialTheme.colorScheme.primaryContainer,
         topBar = {
             MainAppBar(
                 text = stringResource(id = R.string.notification_notification_dashboard),
@@ -56,7 +58,7 @@ fun DashboardScreen(
             }
         },
         sheetPeekHeight = 0.dp,
-        sheetElevation = 0.dp,
+        sheetElevation = 22.dp,
         floatingActionButton = {
             BottomSheetScaffoldFabPositionContainer(fab = {
                 FloatingActionButton(onClick = {

@@ -14,10 +14,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.notificationremindermt3.R
 import com.example.notificationremindermt3.core.appbar.MainAppBar
 import com.example.notificationremindermt3.core.composables.SpacerContainer
 import com.example.notificationremindermt3.core.composables.submit_button.SubmitButton
@@ -46,7 +48,7 @@ fun NotificationDetailsScreen(notificationDetailsScreenViewModel: NotificationDe
     Scaffold(
         topBar = {
             MainAppBar(
-                text = "Details",
+                text = stringResource(id = R.string.notification_details_header),
                 navigationIcon = Icons.Default.ArrowBack,
                 onNavigationButtonClick = {
                     navController.popBackStack()
@@ -70,7 +72,7 @@ fun NotificationDetailsScreen(notificationDetailsScreenViewModel: NotificationDe
 fun NotificationDetailsScreenContent(
     paddingValues: PaddingValues,
     notificationData: Notification?,
-    onRemovedNotificationPressed : () -> Unit
+    onRemovedNotificationPressed: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -88,7 +90,7 @@ fun NotificationDetailsScreenContent(
 @Composable
 fun NotificationDetailsSection(
     notificationData: Notification,
-    onRemovedNotificationPressed : () -> Unit
+    onRemovedNotificationPressed: () -> Unit
 ) {
     Column(
         Modifier
@@ -96,11 +98,20 @@ fun NotificationDetailsSection(
             .fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        LabelDataInfo(label = "Name", data = notificationData.name)
-        LabelDataInfo(label = "Time", data = notificationData.notificationTime.formattedTime())
-        LabelDataInfo(label = "Days", data = notificationData.notificationDays.formattedDays())
+        LabelDataInfo(
+            label = stringResource(id = R.string.notification_details_name_label),
+            data = notificationData.name
+        )
+        LabelDataInfo(
+            label = stringResource(id = R.string.notification_details_time_label),
+            data = notificationData.notificationTime.formattedTime()
+        )
+        LabelDataInfo(
+            label = stringResource(id = R.string.notification_details_days_label),
+            data = notificationData.notificationDays.formattedDays()
+        )
         SpacerContainer(height = 8.0)
-        SubmitButton(label = "Remove notification") {
+        SubmitButton(label = stringResource(id = R.string.notification_details_remove_button_label)) {
             onRemovedNotificationPressed()
         }
     }

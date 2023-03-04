@@ -23,7 +23,7 @@ fun NotificationList(notificationsData: List<Notification>) {
             items = notificationsData,
             itemContent = { item ->
                 NotificationItem(notificationData = item) {
-                    navController.navigate("notification-details")
+                    navController.navigate("notification-details/${item.id}")
                 }
             },
         )

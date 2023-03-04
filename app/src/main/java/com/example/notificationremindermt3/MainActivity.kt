@@ -47,7 +47,7 @@ fun NotificationReminderApp() {
                     startDestination = "dashboard"
                 ) {
                     composable("dashboard") { DashboardScreen() }
-                    composable("notification-details") { NotificationDetailsScreen() }
+                    composable("notification-details/{notificationId}") { NotificationDetailsScreen() }
                 }
             }
         }

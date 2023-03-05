@@ -7,9 +7,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -26,7 +24,6 @@ import com.example.notificationremindermt3.features.new_notification.AddNotifica
 import fr.swarmlab.beta.ui.screens.components.material3.*
 import kotlinx.coroutines.launch
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen(
@@ -41,6 +38,7 @@ fun DashboardScreen(
 
     BottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
+        sheetBackgroundColor = MaterialTheme.colorScheme.primaryContainer,
         topBar = {
             MainAppBar(
                 text = stringResource(id = R.string.notification_notification_dashboard),
@@ -56,7 +54,7 @@ fun DashboardScreen(
             }
         },
         sheetPeekHeight = 0.dp,
-        sheetElevation = 0.dp,
+        sheetElevation = 22.dp,
         floatingActionButton = {
             BottomSheetScaffoldFabPositionContainer(fab = {
                 FloatingActionButton(onClick = {

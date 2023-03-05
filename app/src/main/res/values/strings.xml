@@ -8,5 +8,10 @@
     <string name = "notification_add_label">Add Notification</string>
     <string name = "notification_notification_dashboard">Notification Dashboard</string>
     <string name = "notification_empty_list_placeholder">You have not scheduled any notifications yet.\nTap + to add one.</string>
+    <string name = "notification_details_header">Notification Details</string>
+    <string name = "notification_details_name_label">Name</string>
+    <string name = "notification_details_time_label">Time</string>
+    <string name = "notification_details_days_label">Days</string>
+    <string name = "notification_details_remove_button_label">Remove notification</string>
 
 </resources>

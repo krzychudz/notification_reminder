@@ -14,4 +14,12 @@ class NotificationRepository @Inject constructor(private val notificationDao: No
     override suspend fun addNotification(notification: Notification) {
         notificationDao.insertSingle(notification)
     }
+
+    override suspend fun getNotificationById(notificationId: String) =
+        notificationDao.getById(notificationId)
+
+    override suspend fun removeNotification(notification: Notification) =
+        notificationDao.delete(notification)
+
+
 }

@@ -26,8 +26,9 @@ private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
     tertiary = Pink40,
-   surface = Color(0x0F6750A4),
-    background = Color(0xFFFFFBFE)
+    surface = Color(0x0F6750A4),
+    background = Color(0xFFf6f6f6),
+    primaryContainer = Color.White,
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

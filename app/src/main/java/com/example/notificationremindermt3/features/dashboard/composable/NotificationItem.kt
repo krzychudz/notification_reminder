@@ -1,6 +1,7 @@
 package com.example.notificationremindermt3.features.dashboard.composable
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.example.notificationremindermt3.core.database.table.Notification
 
 @Composable
-fun NotificationItem(notificationData: Notification) {
+fun NotificationItem(notificationData: Notification, onClick: (notificationId: String) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -26,6 +27,9 @@ fun NotificationItem(notificationData: Notification) {
                 color = MaterialTheme.colorScheme.surface,
                 shape = RoundedCornerShape(12.dp),
             )
+            .clickable {
+                onClick(notificationData.id)
+            }
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

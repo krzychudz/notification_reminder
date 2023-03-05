@@ -8,10 +8,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.notificationremindermt3.core.composition_locals.LocalNavigationProvider
 import com.example.notificationremindermt3.core.database.table.Notification
 
 @Composable
 fun NotificationList(notificationsData: List<Notification>) {
+    val navController = LocalNavigationProvider.current
     LazyColumn(
         modifier = Modifier.fillMaxHeight(),
         contentPadding = PaddingValues(horizontal = 12.dp, vertical = 12.dp),
@@ -20,7 +22,9 @@ fun NotificationList(notificationsData: List<Notification>) {
         items(
             items = notificationsData,
             itemContent = { item ->
-                NotificationItem(notificationData = item)
+                NotificationItem(notificationData = item) {
+                    navController.navigate("notification-details/${item.id}")
+                }
             },
         )
     }

@@ -8,6 +8,7 @@ import com.example.notificationremindermt3.core.database.table.Notification
 import com.example.notificationremindermt3.core.models.notification_time.NotificationTime
 import com.example.notificationremindermt3.core.repository.notification.NotificationRepository
 import com.example.notificationremindermt3.core.repository.notification.NotificationRepositoryInterface
+import com.example.notificationremindermt3.core.workers.manager.WorkManagerInterface
 import com.example.notificationremindermt3.features.new_notification.models.notification_days_state.NotificationDaysState
 import com.example.notificationremindermt3.features.new_notification.view_model.state.AddNotificationState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddNotificationBottomSheetViewModel @Inject constructor(
-    private val notificationRepository: NotificationRepositoryInterface
+    private val notificationRepository: NotificationRepositoryInterface,
+    private val workManager: WorkManagerInterface
 ) :
     ViewModel() {
 
@@ -52,6 +54,7 @@ class AddNotificationBottomSheetViewModel @Inject constructor(
         )
         viewModelScope.launch {
             notificationRepository.addNotification(notificationData)
+            workManager.scheduleReminderNotification(notificationData)
             _state.value = notificationState.copy(isNotificationAdded = true)
         }
     }
